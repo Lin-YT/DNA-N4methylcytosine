@@ -13,7 +13,6 @@ from config.config import get_cfg_defaults
 
 
 class OneHot():
-
     def __init__(self, x_list):
         self.x_list = x_list
         self.vocabs2index = {
@@ -41,7 +40,6 @@ class OneHot():
 
 
 class PSTNP():
-
     def __init__(self, x_train, y_train):
         self.alphabet = "ACGT"
         self.x_train = x_train
