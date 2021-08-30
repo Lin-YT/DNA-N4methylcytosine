@@ -82,31 +82,26 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data_name", type=str, default="C.elegans")
-    parser.add_argument("--cross_data_name", type=str, default="C.elegans")
-    parser.add_argument("--model_dir", type=str, default="./results/")
-    parser.add_argument("--train_data", type=str, default="./data/train_data")
-    parser.add_argument("--test_data", type=str, default="./data/test_data")
-    parser.add_argument("--save_pred_dir", type=str, default="test_res")
+    parser.add_argument("--trained_model_name", type=str, default="C.elegans")
+    parser.add_argument("--predicted_data_name", type=str, default="C.elegans")
+    parser.add_argument("--model_path", type=str, default="./results/")
+    parser.add_argument("--train_data_path", type=str, default="./data/train_data")
+    parser.add_argument("--test_data_path", type=str, default="./data/test_data")
     args = parser.parse_args()
 
-    model_path = os.path.join(args.model_dir, args.data_name, "models")
-
-    # check independent data save path
-    out_dir = os.path.join(args.model_dir, args.data_name, args.save_pred_dir)
-    if not os.path.exists(out_dir):
-        os.makedirs(out_dir)
+    model_path = os.path.join(args.model_path, args.trained_model_name, "models")
 
     # create DataReader
-    cls_DataReader = DataReader(args.cross_data_name, dir_data=args.test_data)
+    cls_DataReader = DataReader(args.predicted_data_name, dir_data=args.test_data_path)
 
     # load data to list
     x_list, y_list = cls_DataReader.load_data()
-    print(f"Predicting specie: {args.cross_data_name}")
-    print(f"pos data: {len(cls_DataReader.pos_list)}, neg data: {len(cls_DataReader.neg_list)}")
+    print(f"Using model specie: {args.trained_model_name}")
+    print(f"Predicting specie: {args.predicted_data_name}")
+    print(f"testing pos data: {len(cls_DataReader.pos_list)}, testing neg data: {len(cls_DataReader.neg_list)}")
 
     # average k fold models pred
-    preds, truths = average_models_pred(x_list, y_list, model_path,)
+    preds, truths = average_models_pred(x_list, y_list, model_path)
 
     # calculate metrics
     preds = np.where(np.array(preds).astype(np.float) > 0.5, 1, 0).reshape(-1)  # threshold: 0.5

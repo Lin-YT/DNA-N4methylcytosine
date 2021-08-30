@@ -16,10 +16,11 @@ MODEL:
   INPUT_LENGTH: 41
 
 OPTIMIZER:
-  NAME: "AdaBelief"
-  ADABELIEF:
+  NAME: "SGD"
+  SGD:
+    MOMENTUM: 0.9
     BASE_LR: 0.002
-    EPS: 1.0e-16
+    WEIGHT_DECAY: 0.0
 
 SCHEDULAR:
   NAME: "Reduce_on_plateau"
@@ -27,3 +28,4 @@ SCHEDULAR:
     PATIENCE: 7
     FACTOR: 0.75
     COOL_DOWN: 1
+

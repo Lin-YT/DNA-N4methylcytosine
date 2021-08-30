@@ -24,7 +24,7 @@ from train_utils import EarlyStopping
 from metrics import calculate_metrics
 from dataset import DataReader, DNAdataset
 from build_solver import build_dataloader, build_model, build_optimizer, build_schedular
-from evaluation import validation, test
+from evaluation import validate
 from feature import OneHot
 from train import train
 
