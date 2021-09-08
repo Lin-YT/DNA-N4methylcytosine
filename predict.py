@@ -85,7 +85,6 @@ if __name__ == "__main__":
     parser.add_argument("--trained_model_name", type=str, default="C.elegans")
     parser.add_argument("--predicted_data_name", type=str, default="C.elegans")
     parser.add_argument("--model_path", type=str, default="./results/")
-    parser.add_argument("--train_data_path", type=str, default="./data/train_data")
     parser.add_argument("--test_data_path", type=str, default="./data/test_data")
     args = parser.parse_args()
 

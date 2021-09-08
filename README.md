@@ -1,6 +1,5 @@
 # DNA 4mC Site Prediction Method based on Strided Convolution
-
-This project is my master thesis about predicting DNA N4-methylcytosine (4mC).
+This project is my master thesis about predicting DNA N4-methylcytosine (4mC)
 
 ## Installation
 clone the repo,
